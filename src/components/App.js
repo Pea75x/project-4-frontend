@@ -5,6 +5,8 @@ import FestivalPage from './FestivalPage';
 import '../styles/style.scss';
 import Register from './Register';
 import Login from './Login.js';
+import PublicProfile from './publicProfile';
+import Messages from './Messages';
 
 const App = () => (
   <BrowserRouter>
@@ -13,6 +15,8 @@ const App = () => (
       <Route path='/festival/:id' element={<FestivalPage />} />
       <Route path='/register' element={<Register />} />
       <Route path='/login' element={<Login />} />
+      <Route path='/user/:id' element={<PublicProfile />} />
+      <Route path='/messages/:id' element={<Messages />} />
     </Routes>
   </BrowserRouter>
 );

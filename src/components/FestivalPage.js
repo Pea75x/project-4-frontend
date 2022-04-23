@@ -1,15 +1,15 @@
 import React from 'react';
-import { getFestivalById } from '../api/festivals';
+import { getFestivalById, postAttending } from '../api/festivals';
 import { useParams } from 'react-router-dom';
-import react from 'react';
 import Rating from '@mui/material/Rating';
-import Typography from '@material-ui/core/Typography';
 import Slider from '@material-ui/core/Slider';
+import { Link } from 'react-router-dom';
 
 function FestivalPage() {
+  const { id } = useParams();
+
   const blankAttending = {
-    festival: '',
-    user: '',
+    festival: parseInt(id),
     arrival_date: '',
     depart_date: '',
     price_min: 0,
@@ -22,15 +22,15 @@ function FestivalPage() {
   const [isChecked, setIsChecked] = React.useState(
     new Array(attending.activities.length).fill(false)
   );
-  const { id } = useParams();
+  const [update, setUpdate] = React.useState(false);
 
-  react.useEffect(() => {
+  React.useEffect(() => {
     const getData = async () => {
       const festivalData = await getFestivalById(id);
       setSingleFestival(festivalData);
     };
     getData();
-  }, []);
+  }, [update]);
 
   function handleChange(event) {
     const value =
@@ -67,14 +67,20 @@ function FestivalPage() {
   };
   function handleSubmit(event) {
     event.preventDefault();
-    setAttending({
-      ...attending,
-      festival: singleFestival.id,
-      user: 'Priya'
-    });
+    const getData = async () => {
+      try {
+        await postAttending(attending);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getData();
+    setAttending(blankAttending);
+    setUpdate(!update);
   }
 
-  console.log(attending);
+  console.log('data: ', attending);
+  console.log('update:', update);
 
   if (!singleFestival) {
     return <p>Loading...</p>;
@@ -97,19 +103,24 @@ function FestivalPage() {
         <h1>Attending</h1>
         <div className='columns'>
           {singleFestival.attending.map((post) => (
-            <div key={post.id} className='card search-card'>
-              <img src={post.user.image} />
-              <h1>{post.user.username}</h1>
-              <h2>
-                <strong>Dates: </strong>
-                {post.arrival_date} - {post.depart_date}
-              </h2>
-              <h2>Activities</h2>
-              <ul>
-                {post.activities.map((activity) => (
-                  <li key={activity}>{activity}</li>
-                ))}
-              </ul>
+            <div key={post.id}>
+              <Link to={`/user/${post.user.id}`}>
+                <div className='card search-card'>
+                  <img src={post.user.image} />
+                  <h1>{post.user.username}</h1>
+                  <h2>
+                    <strong>Dates: </strong>
+                    {post.arrival_date} - {post.depart_date}
+                  </h2>
+                  <h2>Activities</h2>
+                  <ul>
+                    {post.activities.map((activity) => (
+                      <li key={activity}>{activity}</li>
+                    ))}
+                  </ul>
+                  <p>{post.comment}</p>
+                </div>
+              </Link>
             </div>
           ))}
         </div>
@@ -120,8 +131,18 @@ function FestivalPage() {
           <form onSubmit={handleSubmit}>
             <div className='field'>
               <label>Dates</label>
-              <input type='date' name='arrival_date' onChange={handleChange} />
-              <input type='date' name='depart_date' onChange={handleChange} />
+              <input
+                type='date'
+                name='arrival_date'
+                onChange={handleChange}
+                value={attending.arrival_date}
+              />
+              <input
+                type='date'
+                name='depart_date'
+                onChange={handleChange}
+                value={attending.depart_date}
+              />
             </div>
             <div
               style={{
@@ -161,7 +182,12 @@ function FestivalPage() {
 
             <div className='field'>
               <label>Comment</label>
-              <textarea rows='4' onChange={handleChange} name='comment' />
+              <textarea
+                rows='4'
+                onChange={handleChange}
+                name='comment'
+                value={attending.comment}
+              />
             </div>
             <input type='submit' className='button' />
           </form>

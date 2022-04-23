@@ -1,29 +1,23 @@
 import axios from 'axios';
 const baseUrl = 'https://project4-priya.herokuapp.com';
 
-export const getFestivals = async () => {
+export const getFriendsMessages = async (friendId) => {
   const options = {
     method: 'GET',
-    url: `${baseUrl}/festivals/`
+    url: `${baseUrl}/messages/?destinationUserId=${friendId}`,
+    headers: {
+      authorization: `Bearer ${window.sessionStorage.getItem('token')}`
+    }
   };
   const { data } = await axios.request(options);
   return data;
 };
 
-export const getFestivalById = async (id) => {
-  const options = {
-    method: 'GET',
-    url: `${baseUrl}/festival/${id}`
-  };
-  const { data } = await axios.request(options);
-  return data;
-};
-
-export const postAttending = async (review) => {
+export const sendMessage = async (text) => {
   const options = {
     method: 'POST',
-    url: `${baseUrl}/post/`,
-    data: review,
+    url: `${baseUrl}/message/`,
+    data: text,
     headers: {
       authorization: `Bearer ${window.sessionStorage.getItem('token')}`
     }
