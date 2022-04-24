@@ -1,31 +1,56 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import * as FaIcons from 'react-icons/fa';
+import * as IoIcons from 'react-icons/io5';
+import { NarbarItems } from './NavbarItems';
+import { IconContext } from 'react-icons';
 
 function Navbar() {
-  let location = useLocation();
-  const navigate = useNavigate();
-  const loggedIn = window.sessionStorage.setItem('token', data.token);
+  const [sidebar, setSidebar] = React.useState(false);
+  const [menu, setMenu] = React.useState(true);
 
-  const logout = () => {
-    sessionStorage.removeItem('token');
-    navigate('/');
-  };
-  function openNav() {
-    document.getElementById('mySidepanel').style.width = '250px';
+  function showsidebar() {
+    setSidebar(!sidebar);
+    setMenu(!menu);
   }
+  // let location = useLocation();
+  // const navigate = useNavigate();
+  // const loggedIn = window.sessionStorage.setItem('token', data.token);
 
-  function closeNav() {
-    document.getElementById('mySidepanel').style.width = '0';
-  }
+  // const logout = () => {
+  //   sessionStorage.removeItem('token');
+  //   navigate('/');
+  // };
 
+  //gothreebars
   return (
     <>
-      <div className='navbar'>
-        <Link to='#'>
-          <FaBars />
-        </Link>
-      </div>
+      <IconContext.Provider value={{ color: 'white' }}>
+        <div className={menu ? 'navbar' : 'navbar-disabled'}>
+          <Link to='#'>
+            <FaIcons.FaBars onClick={showsidebar} />
+          </Link>
+        </div>
+        <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
+          <ul className='nav-menu-items' onClick={showsidebar}>
+            <li className='navbar-toggle'>
+              <Link to='#' className='menu-bars'>
+                <IoIcons.IoCloseCircleOutline />
+              </Link>
+            </li>
+            {NarbarItems.map((item, index) => {
+              return (
+                <li key={index} className={item.class}>
+                  <Link to={item.path}>
+                    {item.icon}
+                    <span>{item.title}</span>
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+        </nav>
+      </IconContext.Provider>
     </>
   );
 }

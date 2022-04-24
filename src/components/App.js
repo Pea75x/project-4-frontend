@@ -8,10 +8,11 @@ import Login from './Login.js';
 import PublicProfile from './publicProfile';
 import Messages from './Messages';
 import AllMessages from './AllMessages';
-//import Navbar from './NavBar';
+import Navbar from './NavBar';
 
 const App = () => (
   <BrowserRouter>
+    <Navbar />
     <Routes>
       <Route path='/festivals' element={<FestivalSearch />} />
       <Route path='/festival/:id' element={<FestivalPage />} />

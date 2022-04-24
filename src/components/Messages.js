@@ -5,6 +5,7 @@ import { sendMessage } from '../api/messages';
 import pineapple from '../images/pineapple.jpg';
 import dateFormat from 'dateformat';
 import { Link } from 'react-router-dom';
+import * as TiIcons from 'react-icons/ti';
 
 function Messages() {
   const { id } = useParams();
@@ -56,8 +57,11 @@ function Messages() {
   if (!messages) {
     return (
       <div className='background'>
-        <div className='square'></div>
-        <p>loading..</p>
+        <div className='square'>
+          <div className='loading-messages'>
+            <p>loading..</p>
+          </div>
+        </div>
       </div>
     );
   } else if (messages.length < 1) {
@@ -93,8 +97,11 @@ function Messages() {
       <div className='background'>
         <div className='square'>
           <Link to='/messages/'>
-            <div className='back-button button-style'>Back to my messages</div>
+            <div className='back-button'>
+              <TiIcons.TiArrowBackOutline />
+            </div>
           </Link>
+
           <section>
             <div className='user-section'>
               <img width='200px' className='profile-pic' src={pineapple} />

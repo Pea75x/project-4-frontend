@@ -20,9 +20,31 @@ function PublicProfile() {
     return <p>Loading..</p>;
   } else {
     return (
-      <div>
-        <h1>{userProfile.username}</h1>
-        <img src={userProfile.image} />
+      <div className='background'>
+        <div className='square'>
+          <section>
+            <div className='user-section'>
+              <img
+                width='300px'
+                className='profile-pic'
+                src={userProfile.image}
+              />
+              <h1 className='title'>{userProfile.username}</h1>
+            </div>
+          </section>
+          <section>
+            <div>
+              <h1>Attending:</h1>
+              {userProfile.attending.map((event) => (
+                <div key={event.id}>
+                  <h1>{event.festival.name}</h1>
+                  <img src={event.festival.image} width='150px' />
+                  <p>{event.festival.location}</p>
+                </div>
+              ))}
+            </div>
+          </section>
+        </div>
       </div>
     );
   }
