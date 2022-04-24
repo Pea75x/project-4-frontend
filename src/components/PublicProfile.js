@@ -23,7 +23,6 @@ function PublicProfile() {
       <div>
         <h1>{userProfile.username}</h1>
         <img src={userProfile.image} />
-        <div>{userProfile.attending}</div>
       </div>
     );
   }
