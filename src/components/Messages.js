@@ -4,6 +4,7 @@ import { getFriendsMessages } from '../api/messages';
 import { sendMessage } from '../api/messages';
 import pineapple from '../images/pineapple.jpg';
 import dateFormat from 'dateformat';
+import { Link } from 'react-router-dom';
 
 function Messages() {
   const { id } = useParams();
@@ -63,6 +64,9 @@ function Messages() {
     return (
       <div className='background'>
         <div className='square'>
+          <Link to='/messages/'>
+            <div className='back-button button-style'>Back to my messages</div>
+          </Link>
           <section>
             <div className='user-section'>
               <img width='200px' className='profile-pic' src={pineapple} />
@@ -88,6 +92,9 @@ function Messages() {
     return (
       <div className='background'>
         <div className='square'>
+          <Link to='/messages/'>
+            <div className='back-button button-style'>Back to my messages</div>
+          </Link>
           <section>
             <div className='user-section'>
               <img width='200px' className='profile-pic' src={pineapple} />

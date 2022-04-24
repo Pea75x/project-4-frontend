@@ -25,7 +25,7 @@
 .message-box {
   padding: 30px 5px 0px 5px;
   overflow-y: auto;
-  max-height: 330px;
+  max-height: 320px;
   margin-top: 0px;
 }
 .user-section {
@@ -43,7 +43,7 @@
   width: 400px;
 }
 .message-input {
-  padding: 10px;
+  padding: 15px;
   text-align: center;
   input {
     width: 400px;
@@ -53,13 +53,14 @@
     height: 30px;
   }
   button {
-    height: 50px;
+    height: 40px;
     width: 50px;
     margin-left: 10px;
-    border-radius: 50%;
+    border-radius: 5px;
     font-family: 'Patrick Hand', cursive;
     border: 2px solid black;
     font-size: 20px;
+    background-color: rgba(255, 255, 255, 0);
   }
   button:hover {
     transform: scale(1.1);
@@ -67,6 +68,73 @@
 }
 .no-messages {
   padding-top: 50px;
+}
+.back-button {
+  width: 150px;
+  height: 70px;
+  position: absolute;
+  left: calc(50% - 500px);
+  top: 50px;
+}
+// friends/messages page
+.friends-card {
+  width: 200px;
+  height: 200px;
+  margin: 30px 5px 5px 5px;
+}
+.friends-card:hover {
+  transform: scale(1.1);
+}
+.display-friends {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 5px;
+}
+
+// navbar
+.sidepanel {
+  height: 250px;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  padding-top: 60px;
+  transition: 0.5s;
+}
+
+.sidepanel a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+.sidepanel a:hover {
+  color: #f1f1f1;
+}
+
+.sidepanel .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+.openbtn {
+  font-size: 20px;
+  cursor: pointer;
+  background-color: #111;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+}
+
+.openbtn:hover {
+  background-color: #444;
 }
 
 //! ALL PAGES
@@ -93,4 +161,29 @@
 }
 .profile-pic {
   border-radius: 50%;
+}
+.username {
+  color: black;
+  font-size: 25px;
+}
+.button-style {
+  border: 1px solid black;
+  border-radius: 5px;
+  color: black;
+  font-size: 20px;
+}
+.button-style:hover {
+  transform: scale(1.1);
+}
+.loading-messages {
+  height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  p {
+    font-size: 30px;
+  }
+}
+.my-title {
+  font-size: 40px;
 }

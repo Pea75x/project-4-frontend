@@ -7,6 +7,8 @@ import Register from './Register';
 import Login from './Login.js';
 import PublicProfile from './publicProfile';
 import Messages from './Messages';
+import AllMessages from './AllMessages';
+//import Navbar from './NavBar';
 
 const App = () => (
   <BrowserRouter>
@@ -17,6 +19,7 @@ const App = () => (
       <Route path='/login' element={<Login />} />
       <Route path='/user/:id' element={<PublicProfile />} />
       <Route path='/messages/:id' element={<Messages />} />
+      <Route path='/messages/' element={<AllMessages />} />
     </Routes>
   </BrowserRouter>
 );

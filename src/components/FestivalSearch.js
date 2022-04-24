@@ -21,23 +21,25 @@ function FestivalSearch() {
 
   return (
     <>
-      <div>
-        <h1>HELLO</h1>
-        <div>
-          {!allfestivals ? (
-            <p>Loading data...</p>
-          ) : (
-            <div className='columns is-multiline scroll'>
-              {allfestivals.map((festival) => (
-                <div
-                  key={festival._id}
-                  className='column is-one-third-desktop mt-6'
-                >
-                  <FestivalCard {...festival} />
-                </div>
-              ))}
-            </div>
-          )}
+      <div className='background'>
+        <div className='square'>
+          <h1 className='my-title'>Events</h1>
+          <div>
+            {!allfestivals ? (
+              <p>Loading data...</p>
+            ) : (
+              <div className='columns is-multiline scroll'>
+                {allfestivals.map((festival) => (
+                  <div
+                    key={festival._id}
+                    className='column is-one-third-desktop mt-6'
+                  >
+                    <FestivalCard {...festival} />
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </>

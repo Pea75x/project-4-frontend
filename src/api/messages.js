@@ -25,3 +25,15 @@ export const sendMessage = async (text) => {
   const { data } = await axios.request(options);
   return data;
 };
+
+export const getMyMessages = async () => {
+  const options = {
+    method: 'GET',
+    url: `${baseUrl}/my-messages/`,
+    headers: {
+      authorization: `Bearer ${window.sessionStorage.getItem('token')}`
+    }
+  };
+  const { data } = await axios.request(options);
+  return data;
+};
