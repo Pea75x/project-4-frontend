@@ -1,6 +1,7 @@
 import React from 'react';
 import { loginUser } from '../api/auth';
 import { useNavigate } from 'react-router-dom';
+import logo from '../images/logo.png';
 
 function Login() {
   const navigate = useNavigate();
@@ -29,58 +30,58 @@ function Login() {
   }
 
   return (
-    <section className='section login-section'>
-      <div className='container'>
-        <div className='columns'>
-          <form
-            onSubmit={handleSubmit}
-            className='box column is-half is-offset-one-quarter'
-          >
-            <div className='field is-small'>
-              <label htmlFor='email' className='label'>
-                Email
-              </label>
-              <div className='control has-icons-left'>
-                <input
-                  placeholder='Email'
-                  name='email'
-                  type='text'
-                  className='input'
-                  id='email'
-                  value={user.email}
-                  onChange={handleChange}
-                ></input>
-                <span className='icon is-small is-left'>
-                  <i className='fas fa-envelope'></i>
-                </span>
-              </div>
-            </div>
-            <div className='field'>
-              <label htmlFor='password' className='label'>
-                Password
-              </label>
-              <div className='control has-icons-left'>
-                <input
-                  placeholder='Password'
-                  name='password'
-                  type='password'
-                  className='input'
-                  id='password'
-                  value={user.password}
-                  onChange={handleChange}
-                ></input>
-                <span className='icon is-small is-left'>
-                  <i className='fas fa-lock'></i>
-                </span>
-              </div>
-            </div>
-            <button type='submit' className='button is-fullwidth is-info'>
-              Login
-            </button>
-          </form>
+    <div className='background'>
+      <div className='square'>
+        <div className='top-heading'>
+          <div className='logo' style={{ backgroundImage: `url(${logo})` }}>
+            <h1 className='my-title'>Login</h1>
+          </div>
         </div>
+        <form className='my-form' onSubmit={handleSubmit}>
+          <div className='field'>
+            <label htmlFor='email' className='label'>
+              Email
+            </label>
+            <div className='control'>
+              <input
+                placeholder='Email'
+                name='email'
+                type='text'
+                className='input'
+                id='email'
+                value={user.email}
+                onChange={handleChange}
+              ></input>
+            </div>
+          </div>
+          <div className='field'>
+            <label htmlFor='password' className='label'>
+              Password
+            </label>
+            <div className='control'>
+              <input
+                placeholder='Password'
+                name='password'
+                type='password'
+                className='input'
+                id='password'
+                value={user.password}
+                onChange={handleChange}
+              ></input>
+            </div>
+          </div>
+          <button type='submit' className='button-style'>
+            Login
+          </button>
+          <p>
+            Dont have an account?{' '}
+            <a className='link' href='/register'>
+              Register now
+            </a>
+          </p>
+        </form>
       </div>
-    </section>
+    </div>
   );
 }
 

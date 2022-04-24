@@ -166,6 +166,53 @@
 span {
   margin-left: 16px;
 }
+//login
+.my-form {
+  height: 450px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 40px;
+  font-size: 30px;
+  button {
+    width: 50%;
+    margin: auto;
+  }
+}
+.link {
+  font-weight: 900;
+  color: black;
+}
+.field {
+  label {
+    font-size: 30px;
+    text-align: left;
+  }
+}
+// registation
+.reg-form {
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 20px;
+  font-size: 30px;
+  label {
+    font-size: 25px;
+    text-align: left;
+    margin: 0;
+  }
+  input {
+    height: 30px;
+  }
+  .register {
+    margin-top: 30px;
+  }
+  .upload {
+    width: 200px;
+    padding: 5px;
+  }
+}
 
 //homepage
 .main-logo {
@@ -193,13 +240,6 @@ span {
     font-size: 35px;
     padding: 30px;
     color: black;
-  }
-  button {
-    background-color: rgba(255, 255, 255, 0);
-    border: 2px solid black;
-    padding: 10px;
-    border-radius: 5px;
-    font-size: 20px;
   }
 }
 
@@ -234,9 +274,10 @@ span {
   font-size: 25px;
 }
 .button-style {
-  border: 1px solid black;
+  background-color: rgba(255, 255, 255, 0);
+  border: 2px solid black;
+  padding: 10px;
   border-radius: 5px;
-  color: black;
   font-size: 20px;
 }
 .button-style:hover {
@@ -262,13 +303,13 @@ span {
   top: 5px;
   left: calc(50% - 100px);
   h1 {
-    line-height: 200px;
+    line-height: 170px;
     color: aqua;
     width: 90%;
   }
 }
 .my-title {
-  font-size: 40px;
+  font-size: 50px;
 }
 .top-heading {
   height: 100px;

@@ -1,6 +1,7 @@
 import React from 'react';
 import { registerUser } from '../api/auth';
 import { useNavigate } from 'react-router-dom';
+import logo from '../images/logo.png';
 
 function Register() {
   const navigate = useNavigate();
@@ -54,87 +55,71 @@ function Register() {
   }
 
   return (
-    <section className='section register-section'>
-      <div className='container'>
-        <div className='columns'>
-          <form
-            className='column is-half is-offset-one-quarter box'
-            onSubmit={handleSubmit}
-          >
-            <div className='field'>
-              <label className='label'>Username</label>
-              <div className='control'>
-                <input
-                  className='input'
-                  placeholder='Username'
-                  name='username'
-                  onChange={handleChange}
-                  value={user.username}
-                />
-              </div>
-            </div>
-            <div className='field'>
-              <label className='label'>Email</label>
-              <div className='control has-icons-left'>
-                <input
-                  className='input'
-                  placeholder='Email'
-                  name='email'
-                  onChange={handleChange}
-                  value={user.email}
-                />
-                <span className='icon is-small is-left'>
-                  <i className='fas fa-envelope'></i>
-                </span>
-              </div>
-            </div>
-            <div className='field'>
-              <label className='label'>Profile Picture</label>
-              <button className='button' onClick={handleUpload}>
-                {imageUploaded}
-              </button>
-            </div>
-            <div className='field'>
-              <label className='label'>Password</label>
-              <div className='control has-icons-left'>
-                <input
-                  type='password'
-                  className='input'
-                  placeholder='Password'
-                  name='password'
-                  onChange={handleChange}
-                  value={user.password}
-                />
-                <span className='icon is-small is-left'>
-                  <i className='fas fa-lock'></i>
-                </span>
-              </div>
-            </div>
-            <div className='field'>
-              <label className='label'>Password Confirmation</label>
-              <div className='control has-icons-left'>
-                <input
-                  type='password'
-                  className='input'
-                  placeholder='Password Confirmation'
-                  name='password_confirmation'
-                  onChange={handleChange}
-                  value={user.password_confirmation}
-                />
-                <span className='icon is-small is-left'>
-                  <i className='fas fa-lock'></i>
-                </span>
-              </div>
-            </div>
-            <div className='field'>
-              <button type='submit' className='button is-fullwidth is-info'>
-                Register Me!
-              </button>
-            </div>
-          </form>
+    <div className='background'>
+      <div className='square'>
+        <div className='top-heading'>
+          <div className='logo' style={{ backgroundImage: `url(${logo})` }}>
+            <h1 className='my-title'>Register</h1>
+          </div>
         </div>
+        <form className='reg-form' onSubmit={handleSubmit}>
+          <label className='label'>Username</label>
+          <div className='control'>
+            <input
+              className='input'
+              placeholder='Username'
+              name='username'
+              onChange={handleChange}
+              value={user.username}
+            />
+          </div>
+          <label className='label'>Email</label>
+          <div className='control'>
+            <input
+              className='input'
+              placeholder='Email'
+              name='email'
+              onChange={handleChange}
+              value={user.email}
+            />
+          </div>
+          <label className='label'>Profile Picture</label>
+          <button className='upload button-style' onClick={handleUpload}>
+            {imageUploaded}
+          </button>
+
+          <label className='label'>Password</label>
+          <div className='control'>
+            <input
+              type='password'
+              className='input'
+              placeholder='Password'
+              name='password'
+              onChange={handleChange}
+              value={user.password}
+            />
+          </div>
+
+          <label className='label'>Password Confirmation</label>
+          <div className='control'>
+            <input
+              type='password'
+              className='input'
+              placeholder='Password Confirmation'
+              name='password_confirmation'
+              onChange={handleChange}
+              value={user.password_confirmation}
+            />
+          </div>
+
+          <div className='field'>
+            <button type='submit' className='button-style register'>
+              Register Me!
+            </button>
+          </div>
+        </form>
       </div>
-    </section>
+    </div>
   );
 }
 

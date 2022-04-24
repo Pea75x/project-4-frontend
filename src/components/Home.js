@@ -10,7 +10,7 @@ function Home() {
           <h1 className='main-logo'>Friend Finding App</h1>
           <p>Log in to find friends</p>
           <Link to='/login/'>
-            <button className='make-bigger'>Login</button>
+            <button className='button-style'>Login</button>
           </Link>
         </div>
       </div>
