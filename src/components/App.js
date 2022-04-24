@@ -9,11 +9,13 @@ import PublicProfile from './publicProfile';
 import Messages from './Messages';
 import AllMessages from './AllMessages';
 import Navbar from './NavBar';
+import Home from './Home';
 
 const App = () => (
   <BrowserRouter>
     <Navbar />
     <Routes>
+      <Route path='/' element={<Home />} />
       <Route path='/festivals' element={<FestivalSearch />} />
       <Route path='/festival/:id' element={<FestivalPage />} />
       <Route path='/register' element={<Register />} />
