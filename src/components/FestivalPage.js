@@ -5,6 +5,7 @@ import Rating from '@mui/material/Rating';
 import Slider from '@material-ui/core/Slider';
 import { Link } from 'react-router-dom';
 import logo from '../images/logo.png';
+import dateFormat from 'dateformat';
 
 function FestivalPage() {
   const { id } = useParams();
@@ -23,6 +24,7 @@ function FestivalPage() {
   const [isChecked, setIsChecked] = React.useState(
     new Array(attending.activities.length).fill(false)
   );
+  const [moreInfo, setMoreInfo] = React.useState(null);
   const [update, setUpdate] = React.useState(false);
 
   React.useEffect(() => {
@@ -40,7 +42,13 @@ function FestivalPage() {
         : event.target.value;
     setAttending({ ...attending, [event.target.name]: value });
   }
-
+  function changeAttendingView(event) {
+    const userId = event.target.name;
+    const data = singleFestival.attending.find(
+      (user) => user.user.id == userId
+    );
+    setMoreInfo(data);
+  }
   const rangeSelector = (event, newValue) => {
     setAttending({
       ...attending,
@@ -103,80 +111,110 @@ function FestivalPage() {
     <div className='background'>
       <div className='square'>
         <h1 className='my-title'>{singleFestival.name}</h1>
-        <section>
-          <div className='left'>
+        <section className='festival-page-info'>
+          <div>
             <p>{singleFestival.location}</p>
             <p>
-              {singleFestival.start_date} - {singleFestival.end_date}
+              {dateFormat(singleFestival.start_date, 'dddd, mmmm dS')} -
+              {dateFormat(singleFestival.end_date, 'dddd, mmmm dS')}
             </p>
           </div>
-          <div className='right'>
+          <div>
             <img src={singleFestival.image} width='300px' />
           </div>
         </section>
-        <section>
-          <h1>Attending</h1>
-          <div className='columns'>
+        <section className='attending-posts'>
+          <h1 className='second-title'>Attending</h1>
+          <div className='attending-pics'>
             {singleFestival.attending.map((post) => (
-              <div key={post.id}>
-                <Link to={`/user/${post.user.id}`}>
-                  <div className='card search-card'>
-                    <img src={post.user.image} />
-                    <h1>{post.user.username}</h1>
+              <img
+                key={post.id}
+                src={post.user.image}
+                width='100px'
+                className='profile-pic make-bigger'
+                name={post.user.id}
+                onClick={changeAttendingView}
+              />
+            ))}
+          </div>
+          <div>
+            {!moreInfo ? (
+              <p className='search-card-blank my-title'>
+                Click on a user to view their details
+              </p>
+            ) : (
+              <Link to={`/user/${moreInfo.user.id}`}>
+                <div className='search-card'>
+                  <div className='view-profile'>
+                    <h1>{moreInfo.user.username}</h1>
+                    <img
+                      src={moreInfo.user.image}
+                      className='profile-pic'
+                      width='100px'
+                    />
+                    <button className='button-style'>View Profile</button>
+                  </div>
+                  <div className='info'>
+                    <strong>Dates: </strong>
                     <h2>
-                      <strong>Dates: </strong>
-                      {post.arrival_date} - {post.depart_date}
+                      {dateFormat(moreInfo.arrival_date, 'mmmm dS')} -
+                      {dateFormat(moreInfo.depart_date, 'mmmm dS')}
                     </h2>
-                    <h2>Activities</h2>
+                    <strong>Activities: </strong>
                     <ul>
-                      {post.activities.map((activity) => (
+                      {moreInfo.activities.map((activity) => (
                         <li key={activity}>{activity}</li>
                       ))}
                     </ul>
-                    <p>{post.comment}</p>
+                    <strong>Message: </strong>
+                    <p>{moreInfo.comment}</p>
                   </div>
-                </Link>
-              </div>
-            ))}
+                </div>
+              </Link>
+            )}
           </div>
         </section>
         <section>
-          <div className='column is-one-third box is-offset-one-third'>
-            <h1>Post your Attendance</h1>
+          <div className='post-attendance'>
+            <h1 className='second-title'>Post your Attendance</h1>
             <form onSubmit={handleSubmit}>
               <div className='field'>
                 <label>Dates</label>
-                <input
-                  type='date'
-                  name='arrival_date'
-                  onChange={handleChange}
-                  value={attending.arrival_date}
-                />
-                <input
-                  type='date'
-                  name='depart_date'
-                  onChange={handleChange}
-                  value={attending.depart_date}
-                />
-              </div>
-              <div
-                style={{
-                  margin: 'auto',
-                  display: 'block',
-                  width: 'fit-content'
-                }}
-              >
-                <h3>Price Range</h3>
-
-                <Slider
-                  value={[attending.price_min, attending.price_max]}
-                  onChange={rangeSelector}
-                  valueLabelDisplay='auto'
-                  min={0}
-                  max={5000}
-                />
+                <div>
+                  <input
+                    type='date'
+                    name='arrival_date'
+                    onChange={handleChange}
+                    value={attending.arrival_date}
+                  />
+                  <input
+                    type='date'
+                    name='depart_date'
+                    onChange={handleChange}
+                    value={attending.depart_date}
+                  />
+                </div>
               </div>
 
+              <div className='field'>
+                <div
+                  style={{
+                    margin: 'auto',
+                    display: 'block',
+                    width: '500px'
+                  }}
+                >
+                  <label>Price Range</label>
+
+                  <Slider
+                    value={[attending.price_min, attending.price_max]}
+                    onChange={rangeSelector}
+                    valueLabelDisplay='auto'
+                    min={0}
+                    max={5000}
+                  />
+                </div>
+              </div>
               <div className='field'>
                 <label>Activities</label>
                 <div id='activities'>
