@@ -14,6 +14,7 @@ function Register() {
     password: '',
     password_confirmation: ''
   });
+  const [errorMessage, setErrorMessage] = React.useState('');
 
   function handleChange(event) {
     setUser({ ...user, [event.target.name]: event.target.value });
@@ -62,6 +63,7 @@ function Register() {
             <h1 className='my-title'>Register</h1>
           </div>
         </div>
+        <p>{errorMessage}</p>
         <form className='reg-form' onSubmit={handleSubmit}>
           <label className='label'>Username</label>
           <div className='control'>

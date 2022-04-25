@@ -1,8 +1,8 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import { getFriendsMessages } from '../api/messages';
+import { getPublicUser } from '../api/auth';
 import { sendMessage } from '../api/messages';
-import pineapple from '../images/pineapple.jpg';
 import dateFormat from 'dateformat';
 import { Link } from 'react-router-dom';
 import * as TiIcons from 'react-icons/ti';
@@ -10,6 +10,7 @@ import * as TiIcons from 'react-icons/ti';
 function Messages() {
   const { id } = useParams();
   const [messages, setMessages] = React.useState(null);
+  const [userProfile, setUserProfile] = React.useState(null);
   const [update, setUpdate] = React.useState(false);
   const messageTemplate = {
     destination_user: id,
@@ -20,6 +21,8 @@ function Messages() {
   React.useEffect(() => {
     const getData = async () => {
       try {
+        const userData = await getPublicUser(id);
+        setUserProfile(userData);
         const messageData = await getFriendsMessages(id);
         const sortedData = messageData.sort((a, b) =>
           a.created_date < b.created_date ? -1 : 1
@@ -50,7 +53,6 @@ function Messages() {
     setMessageText(messageTemplate);
     setUpdate(!update);
   }
-
   console.log('message data: ', messages);
   console.log('update', update);
 
@@ -73,8 +75,14 @@ function Messages() {
           </Link>
           <section>
             <div className='user-section'>
-              <img width='200px' className='profile-pic' src={pineapple} />
-              <h1 className='title'>UserName</h1>
+              <Link to={`/user/${userProfile.id}/`}>
+                <img
+                  width='200px'
+                  className='profile-pic'
+                  src={userProfile.image}
+                />
+              </Link>
+              <h1 className='my-title'>{userProfile.username}</h1>
             </div>
           </section>
           <section>
@@ -104,8 +112,12 @@ function Messages() {
 
           <section>
             <div className='user-section'>
-              <img width='200px' className='profile-pic' src={pineapple} />
-              <h1 className='title'>UserName</h1>
+              <img
+                width='200px'
+                className='profile-pic'
+                src={userProfile.image}
+              />
+              <h1 className='title'>{userProfile.username}</h1>
             </div>
           </section>
           <section>
@@ -127,8 +139,10 @@ function Messages() {
                     <p>{message.text}</p>
                     <p>
                       <em>
-                        {dateFormat(message.created_date, 'H:mm')}{' '}
-                        {dateFormat(message.created_date, 'mmmm dS')}
+                        {dateFormat(
+                          message.created_date,
+                          'dddd, mmmm dS, h:MM TT'
+                        )}
                       </em>
                     </p>
                   </div>

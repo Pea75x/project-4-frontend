@@ -63,7 +63,7 @@ function AllMessages() {
                     className='profile-pic'
                     src={friend.destination_user.image}
                     width='200px'
-                  />{' '}
+                  />
                   <h1 className='username'>
                     {friend.destination_user.username}
                   </h1>

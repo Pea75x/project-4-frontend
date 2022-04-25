@@ -9,6 +9,7 @@ function Login() {
     email: '',
     password: ''
   });
+  const [errorMessage, setErrorMessage] = React.useState('');
 
   function handleChange(event) {
     setUser({ ...user, [event.target.name]: event.target.value });
@@ -23,7 +24,7 @@ function Login() {
 
         navigate(`/festivals`);
       } catch (error) {
-        console.log(error);
+        setErrorMessage(error.response.data.message);
       }
     };
     getData();
@@ -70,11 +71,12 @@ function Login() {
               ></input>
             </div>
           </div>
+          <p className='error'>{errorMessage}</p>
           <button type='submit' className='button-style'>
             Login
           </button>
           <p>
-            Dont have an account?{' '}
+            Dont have an account?
             <a className='link' href='/register'>
               Register now
             </a>
