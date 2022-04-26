@@ -19,7 +19,7 @@
   min-height: 100vh;
 }
 .square {
-  padding-top: 20px;
+  margin-top: 20px;
   width: 650px;
   background-color: rgba(255, 255, 255, 0.733);
   border-radius: 60px;
@@ -90,8 +90,47 @@
 }
 
 // festival page
+.festival-image {
+  border-radius: 60px 60px 0 0;
+  height: 270px;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  h1 {
+    font-size: 70px;
+    color: black;
+    font-weight: 900;
+    text-shadow: 0 0 7px #fff, 0 0 10px #fff, 0 0 21px #fff,
+      0 0 42px rgb(0, 255, 213), 0 0 82px rgb(11, 255, 227),
+      0 0 92px rgb(60, 253, 214), 0 0 102px rgb(0, 255, 204),
+      0 0 131px rgb(0, 255, 213);
+  }
+}
+.page-scroll {
+  overflow-y: auto;
+  max-height: 650px;
+  margin-top: 0px;
+}
+.search-festival-card:hover {
+  border: 2px solid black;
+  background-color: rgba(255, 255, 255, 0.287);
+  border-radius: 5px;
+}
+.search-festival-card {
+  font-family: 'Square Peg', cursive;
+  font-size: 25px;
+  line-height: 25px;
+  font-size: 30px;
+  font-weight: 700;
+  padding-bottom: 5px;
+  color: rgb(45, 45, 45);
+}
 .search-card-blank {
-  height: 280px;
+  height: 270px;
+  margin: 10px;
   text-align: center;
   display: flex;
   align-items: center;
@@ -104,13 +143,14 @@
   line-height: 25px;
   display: flex;
   align-items: center;
+  height: 270px;
   padding: 10px;
-  height: 280px;
   .info {
     text-align: left;
     color: rgb(45, 45, 45);
     width: 450px;
   }
+
   img {
     padding: 10px;
     width: 150px;
@@ -144,16 +184,47 @@
   align-items: center;
   font-family: 'Square Peg', cursive;
   font-size: 30px;
-  text-align: left;
+  text-align: center;
 }
 .attending-posts {
   font-family: 'Square Peg', cursive;
+  button {
+    background-color: rgba(255, 255, 255, 0);
+    border-radius: 5px;
+    border: 2px solid black;
+    padding: 5px;
+  }
 }
 .post-attendance {
   font-family: 'Square Peg', cursive;
-  margin: 20px;
+  margin: 20px auto;
+  width: 350px;
   background-color: white;
   border-radius: 10px;
+}
+.attending-search {
+  display: flex;
+  justify-content: space-around;
+}
+.activity-button {
+  width: 100px;
+  margin: 10px;
+  border: 2px solid black;
+  border-radius: 5px;
+  background-color: rgba(255, 255, 255, 0);
+}
+.activity-button:hover {
+  background-color: rgba(255, 255, 255, 0.531);
+}
+.MuiSlider-thumb span {
+  margin-left: 0px;
+}
+.activities {
+  display: flex;
+  justify-content: space-around;
+}
+.hotels {
+  margin: 10px;
 }
 
 // messages page
@@ -314,9 +385,6 @@
   justify-content: start;
   align-items: center;
 }
-span {
-  margin-left: 16px;
-}
 //login
 .my-form {
   height: 450px;
@@ -396,4 +464,31 @@ span {
     color: black;
     font-family: 'Square Peg', cursive;
   }
+}
+.home-square {
+  padding-top: 20px;
+  width: 650px;
+  text-align: center;
+}
+// search page
+.search-bar {
+  width: 300px;
+  margin: 20px auto;
+  border: 2px solid black;
+  border-radius: 5px;
+  input {
+    background-color: rgba(255, 255, 255, 0);
+  }
+}
+.search-scroll {
+  overflow-y: auto;
+  max-height: 500px;
+  margin-top: 0px;
+}
+//public page
+.public-profile {
+  line-height: 40px;
+  font-size: 50px;
+  font-weight: 900;
+  padding-bottom: 40px;
 }

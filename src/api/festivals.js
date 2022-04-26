@@ -31,3 +31,12 @@ export const postAttending = async (review) => {
   const { data } = await axios.request(options);
   return data;
 };
+
+export const getFestivalByName = async (searchName) => {
+  const options = {
+    method: 'GET',
+    url: `${baseUrl}/festivalsearch/?name=${searchName}`
+  };
+  const { data } = await axios.request(options);
+  return data;
+};

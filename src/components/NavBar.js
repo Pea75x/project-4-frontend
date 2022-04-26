@@ -4,6 +4,7 @@ import * as FaIcons from 'react-icons/fa';
 import * as IoIcons from 'react-icons/io5';
 import * as CgIcons from 'react-icons/cg';
 import * as MdIcons from 'react-icons/md';
+import * as BiIcons from 'react-icons/bi';
 import { NarbarItems } from './NavbarItems';
 import { IconContext } from 'react-icons';
 
@@ -61,6 +62,12 @@ function Navbar() {
               </div>
             ) : (
               <div>
+                <li className='nav-text'>
+                  <Link to='/'>
+                    <BiIcons.BiHomeHeart />
+                    <span>Home</span>
+                  </Link>
+                </li>
                 <li className='nav-text'>
                   <Link to='/login/'>
                     <CgIcons.CgLogIn />

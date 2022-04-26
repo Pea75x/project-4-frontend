@@ -1,6 +1,7 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import { getPublicUser } from '../api/auth';
+import { Link } from 'react-router-dom';
 
 function PublicProfile() {
   const { id } = useParams();
@@ -17,7 +18,13 @@ function PublicProfile() {
   console.log(userProfile);
 
   if (!userProfile) {
-    return <p>Loading..</p>;
+    return (
+      <div className='background'>
+        <div className='square'>
+          <p>Loading..</p>
+        </div>
+      </div>
+    );
   } else {
     return (
       <div className='background'>
@@ -25,23 +32,41 @@ function PublicProfile() {
           <section>
             <div className='user-section'>
               <img
-                width='300px'
+                width='250px'
                 className='profile-pic'
                 src={userProfile.image}
               />
-              <h1 className='title'>{userProfile.username}</h1>
+              <h1 className='my-title public-profile'>
+                {userProfile.username}
+              </h1>
             </div>
           </section>
+          <Link to={`/messages/${userProfile.id}`}>
+            <button className='button-style'>Send a message</button>
+          </Link>
           <section>
             <div>
-              <h1>Attending:</h1>
-              {userProfile.attending.map((event) => (
-                <div key={event.id}>
-                  <h1>{event.festival.name}</h1>
-                  <img src={event.festival.image} width='150px' />
-                  <p>{event.festival.location}</p>
-                </div>
-              ))}
+              <h1 className='second-title'>Attending:</h1>
+              <div className='columns'>
+                {userProfile.attending.map((event) => (
+                  <div
+                    key={event.id}
+                    className='column is-one-quarter is-centered'
+                  >
+                    <div className='search-festival-card'>
+                      <p>{event.festival.name}</p>
+                      <figure className='image is-4by3'>
+                        <img
+                          className='card-image'
+                          src={event.festival.image}
+                        />
+                      </figure>
+
+                      <p>{event.festival.location}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
           </section>
         </div>

@@ -71,7 +71,9 @@ function Messages() {
       <div className='background'>
         <div className='square'>
           <Link to='/messages/'>
-            <div className='back-button button-style'>Back to my messages</div>
+            <div className='back-button'>
+              <TiIcons.TiArrowBackOutline />
+            </div>
           </Link>
           <section>
             <div className='user-section'>

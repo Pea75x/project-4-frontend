@@ -7,7 +7,7 @@ function Home() {
   console.log(loggedIn);
   return (
     <div className='background'>
-      <div className='square'>
+      <div className='home-square'>
         <div className='home-page' style={{ backgroundImage: `url(${logo})` }}>
           <h1 className='main-logo'>Friend Finding App</h1>
 

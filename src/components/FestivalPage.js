@@ -26,11 +26,13 @@ function FestivalPage() {
   );
   const [moreInfo, setMoreInfo] = React.useState(null);
   const [update, setUpdate] = React.useState(false);
+  const [searchTerm, setSearchTerm] = React.useState(null);
 
   React.useEffect(() => {
     const getData = async () => {
       const festivalData = await getFestivalById(id);
       setSingleFestival(festivalData);
+      setSearchTerm(festivalData.attending);
     };
     getData();
   }, [update]);
@@ -88,8 +90,19 @@ function FestivalPage() {
     setUpdate(!update);
   }
 
+  function activitySearch(event) {
+    if (event.target.name === 'All') {
+      setSearchTerm(singleFestival.attending);
+    } else {
+      const data = singleFestival.attending.filter((attend) =>
+        attend.activities.includes(event.target.name)
+      );
+      setSearchTerm(data);
+    }
+  }
+
   console.log('data: ', attending);
-  console.log('update:', update);
+  console.log('search term: ', searchTerm);
 
   if (!singleFestival) {
     return (
@@ -109,9 +122,12 @@ function FestivalPage() {
   }
   return (
     <div className='background'>
-      <div className='square'>
-        <h1 className='my-title'>{singleFestival.name}</h1>
-        <section className='festival-page-info'>
+      <div className='square page-scroll'>
+        <div
+          className='festival-image'
+          style={{ backgroundImage: `url(${singleFestival.image})` }}
+        >
+          <h1 className='my-title'>{singleFestival.name}</h1>
           <div>
             <p>{singleFestival.location}</p>
             <p>
@@ -119,23 +135,47 @@ function FestivalPage() {
               {dateFormat(singleFestival.end_date, 'dddd, mmmm dS')}
             </p>
           </div>
-          <div>
-            <img src={singleFestival.image} width='300px' />
-          </div>
-        </section>
+        </div>
+
+        <section className='festival-page-info'></section>
         <section className='attending-posts'>
           <h1 className='second-title'>Attending</h1>
-          <div className='attending-pics'>
-            {singleFestival.attending.map((post) => (
-              <img
-                key={post.id}
-                src={post.user.image}
-                width='100px'
-                className='profile-pic make-bigger'
-                name={post.user.id}
-                onClick={changeAttendingView}
-              />
+          <h1>Search for friends who want to do the same things as you.</h1>
+          <div className='attending-search'>
+            <button
+              className='activity-button'
+              name='All'
+              onClick={activitySearch}
+            >
+              All
+            </button>
+            {singleFestival.activities.map((activity) => (
+              <button
+                className='activity-button'
+                name={activity}
+                onClick={activitySearch}
+                key={activity}
+              >
+                {activity}
+              </button>
             ))}
+          </div>
+
+          <div className='attending-pics'>
+            {!searchTerm ? (
+              <p>loading</p>
+            ) : (
+              searchTerm.map((post) => (
+                <img
+                  key={post.id}
+                  src={post.user.image}
+                  width='100px'
+                  className='profile-pic make-bigger'
+                  name={post.user.id}
+                  onClick={changeAttendingView}
+                />
+              ))
+            )}
           </div>
           <div>
             {!moreInfo ? (
@@ -160,14 +200,16 @@ function FestivalPage() {
                       {dateFormat(moreInfo.arrival_date, 'mmmm dS')} -
                       {dateFormat(moreInfo.depart_date, 'mmmm dS')}
                     </h2>
-                    <strong>Activities: </strong>
-                    <ul>
-                      {moreInfo.activities.map((activity) => (
-                        <li key={activity}>{activity}</li>
-                      ))}
-                    </ul>
-                    <strong>Message: </strong>
-                    <p>{moreInfo.comment}</p>
+                    <div>
+                      <strong>Activities: </strong>
+                    </div>
+                    {moreInfo.activities.map((activity) => (
+                      <span key={activity}>🌴{activity}</span>
+                    ))}
+                    <div>
+                      <strong>Message: </strong>
+                      <p>{moreInfo.comment}</p>
+                    </div>
                   </div>
                 </div>
               </Link>
@@ -199,13 +241,12 @@ function FestivalPage() {
               <div className='field'>
                 <div
                   style={{
-                    margin: 'auto',
                     display: 'block',
-                    width: '500px'
+                    width: '300px',
+                    margin: 'auto'
                   }}
                 >
                   <label>Price Range</label>
-
                   <Slider
                     value={[attending.price_min, attending.price_max]}
                     onChange={rangeSelector}
@@ -215,9 +256,10 @@ function FestivalPage() {
                   />
                 </div>
               </div>
+
               <div className='field'>
                 <label>Activities</label>
-                <div id='activities'>
+                <div className='activities'>
                   {singleFestival.activities.map((activity, index) => (
                     <div key={activity} name='activites'>
                       <input
@@ -234,7 +276,10 @@ function FestivalPage() {
               </div>
 
               <div className='field'>
-                <label>Comment</label>
+                <div>
+                  <label>Comment</label>
+                </div>
+
                 <textarea
                   rows='4'
                   onChange={handleChange}
@@ -242,19 +287,24 @@ function FestivalPage() {
                   value={attending.comment}
                 />
               </div>
-              <input type='submit' className='button' />
+              <input type='submit' className='activity-button make-bigger' />
             </form>
           </div>
         </section>
         <section>
-          <h1>Hotels</h1>
-          <div className='columns'>
+          <h1 className='second-title'>Hotels</h1>
+          <div className='columns hotels'>
             {singleFestival.hotel.map((hotel) => (
-              <div key={hotel.id} className='card search-card'>
-                <h1>{hotel.name}</h1>
-                <img className='card-image' src={hotel.image} />
-                <div>
-                  <Rating name='read-only' value={hotel.rating} readOnly />
+              <div key={hotel.id} className='column is-one-third'>
+                <div className='search-festival-card'>
+                  <h1>{hotel.name}</h1>
+                  <figure className='image is-4by3'>
+                    <img className='card-image' src={hotel.image} />
+                  </figure>
+
+                  <div>
+                    <Rating name='read-only' value={hotel.rating} readOnly />
+                  </div>
                 </div>
               </div>
             ))}
