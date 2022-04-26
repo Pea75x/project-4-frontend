@@ -121,44 +121,47 @@ function FestivalPage() {
     );
   }
   return (
-    <div className='background'>
+    <div
+      className='background-festival'
+      style={{ backgroundImage: `url(${singleFestival.image}})` }}
+    >
       <div className='square page-scroll'>
-        <div
-          className='festival-image'
-          style={{ backgroundImage: `url(${singleFestival.image})` }}
-        >
-          <h1 className='my-title'>{singleFestival.name}</h1>
-          <div>
-            <p>{singleFestival.location}</p>
-            <p>
-              {dateFormat(singleFestival.start_date, 'dddd, mmmm dS')} -
-              {dateFormat(singleFestival.end_date, 'dddd, mmmm dS')}
-            </p>
-          </div>
+        <h1 className='mega-title'>{singleFestival.name}</h1>
+        <div>
+          <p className='my-title line-height'>{singleFestival.location}</p>
+          <p className='my-title line-height'>
+            {dateFormat(singleFestival.start_date, 'dddd, mmmm dS')} -
+            {dateFormat(singleFestival.end_date, 'dddd, mmmm dS')}
+          </p>
         </div>
-
+        <div className='line'></div>
         <section className='festival-page-info'></section>
         <section className='attending-posts'>
           <h1 className='second-title'>Attending</h1>
-          <h1>Search for friends who want to do the same things as you.</h1>
+          <h1 className='third-title'>
+            Search for friends who want to do the same things as you.
+          </h1>
           <div className='attending-search'>
-            <button
-              className='activity-button'
-              name='All'
-              onClick={activitySearch}
-            >
-              All
-            </button>
-            {singleFestival.activities.map((activity) => (
+            <div className='is-multiline'>
               <button
                 className='activity-button'
-                name={activity}
+                name='All'
                 onClick={activitySearch}
-                key={activity}
               >
-                {activity}
+                All
               </button>
-            ))}
+
+              {singleFestival.activities.map((activity) => (
+                <button
+                  className='activity-button'
+                  name={activity}
+                  onClick={activitySearch}
+                  key={activity}
+                >
+                  {activity}
+                </button>
+              ))}
+            </div>
           </div>
 
           <div className='attending-pics'>
@@ -170,7 +173,7 @@ function FestivalPage() {
                   key={post.id}
                   src={post.user.image}
                   width='100px'
-                  className='profile-pic make-bigger'
+                  className='profile-pic make-bigger attending-icons'
                   name={post.user.id}
                   onClick={changeAttendingView}
                 />
@@ -253,6 +256,7 @@ function FestivalPage() {
                     valueLabelDisplay='auto'
                     min={0}
                     max={5000}
+                    step={100}
                   />
                 </div>
               </div>
@@ -292,7 +296,7 @@ function FestivalPage() {
           </div>
         </section>
         <section>
-          <h1 className='second-title'>Hotels</h1>
+          <h1 className='second-title'>Accommodation</h1>
           <div className='columns hotels'>
             {singleFestival.hotel.map((hotel) => (
               <div key={hotel.id} className='column is-one-third'>

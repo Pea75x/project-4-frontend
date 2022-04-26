@@ -18,6 +18,15 @@
   background-size: cover;
   min-height: 100vh;
 }
+.background-festival {
+  display: flex;
+  justify-content: center;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 100vh;
+}
 .square {
   margin-top: 20px;
   width: 650px;
@@ -28,6 +37,10 @@
 }
 .profile-pic {
   border-radius: 50%;
+  object-fit: cover;
+}
+.attending-icons {
+  height: 100px;
 }
 .username {
   color: black;
@@ -71,11 +84,20 @@
   }
 }
 .my-title {
-  font-size: 50px;
+  font-size: 55px;
+  font-weight: 600;
   font-family: 'Square Peg', cursive;
 }
 .second-title {
   font-size: 35px;
+  font-family: 'Square Peg', cursive;
+}
+.line-height {
+  line-height: 45px;
+}
+.mega-title {
+  font-size: 100px;
+  font-weight: 900;
   font-family: 'Square Peg', cursive;
 }
 .top-heading {
@@ -222,11 +244,20 @@
 .activities {
   display: flex;
   justify-content: space-around;
+  flex-wrap: wrap;
+  font-size: 20px;
 }
 .hotels {
   margin: 10px;
 }
-
+.line {
+  height: 2px;
+  margin: 30px 20px 20px 10px;
+  background-color: gray;
+}
+.third-title {
+  font-size: 25px;
+}
 // messages page
 .my-message {
   text-align: right;
