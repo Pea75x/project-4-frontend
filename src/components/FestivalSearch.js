@@ -56,13 +56,17 @@ function FestivalSearch() {
               className='input'
             />
           </div>
+
           <div className='search-scroll'>
             {!allfestivals ? (
               <p>Loading data...</p>
             ) : (
               <div className='columns is-multiline scroll'>
                 {allfestivals.map((festival) => (
-                  <div key={festival._id} className='column is-one-third'>
+                  <div
+                    key={festival._id}
+                    className='column is-one-third is-one-third-mobile'
+                  >
                     <FestivalCard {...festival} />
                   </div>
                 ))}

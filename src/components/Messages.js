@@ -116,7 +116,7 @@ function Messages() {
             <div className='user-section'>
               <img
                 width='200px'
-                className='profile-pic'
+                className='profile-pic profile-icons'
                 src={userProfile.image}
               />
               <h1 className='title'>{userProfile.username}</h1>

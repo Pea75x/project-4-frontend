@@ -60,7 +60,7 @@ function AllMessages() {
               >
                 <div className='friends-card'>
                   <img
-                    className='profile-pic'
+                    className='profile-pic messages-pic'
                     src={friend.destination_user.image}
                     width='200px'
                   />
