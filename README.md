@@ -34,3 +34,9 @@ I created an app for festivals abroad, where you click attending to a festival, 
 - Festival page and "Attending" post
 - Public Profile
 - Register and login
+
+![excalidraw-plan](./readme/excalidraw.png)
+
+I also wanted to add a "group trip" where you can create a trip and add other members you have met on the app. You can see it below in the group trip model. I decided not to include it as I didnt think it was possible within the time frame.
+
+![relationship-entity-diagram](./readme/relationship-entity-diagram.png)
