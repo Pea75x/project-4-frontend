@@ -83,7 +83,7 @@ export const getFriendsMessages = async (friendId) => {
 };
 ```
 
-When I come to use the data, I then sort it by created date.
+When I come to use the data, I then sort it by the created date.
 
 ```javascript
 const messageData = await getFriendsMessages(id);
@@ -118,7 +118,7 @@ To update the page to include the newly sent message I have also added setUpdate
 
 ## Festival page - user search function
 
-On the festival page you can find other users that are interested in the same actvities by filtering the attending section, and then clicking the icon of any user to find out more.
+On the festival page you can find other users that are interested in the same activities by filtering the attending section, and then clicking the icon of any user to find out more.
 ![user-search](./readme/usersearch.gif)
 
 To only get the activities personal to each festival, I mapped over the activities section on the festival data.
@@ -158,7 +158,7 @@ For the onChange I used the checkbox function. Firstly I uncheck/check the box -
 setIsChecked(!isChecked);
 ```
 
-I then check if the activity is already on the list of activities in our post. If it hasnt, we spread our post data and add the activity to the list -
+I then check if the activity is already on the list of activities in our post. If it hasn't, we spread our post data and add the activity to the list -
 
 ```javascript
 if (!attending.activities.includes(activity)) {
@@ -185,3 +185,11 @@ If it is already there, we need to remove it from the list -
 ## Future functionality
 
 I would have loved to have had time to include the map of each festival location that includes the latitude and longitude of the festival and each hotel so users could see the place with the best location.
+
+## Wins
+
+I am very happy with my messaging feature, and how dynamic the festival page is with the activity filters and user viewing panel.
+
+## Bugs
+
+For the messaging function and post attendance function I did notice that on occasion the page does not refresh with the message/post. This is something I would like to look into further so that my messaging can be more reliable.
