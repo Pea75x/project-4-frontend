@@ -1,2 +1,7 @@
+node_modules
+.env
+.vscode
+.DS_Store
 # Local Netlify folder
 .netlify
+credentials.json
