@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import * as FaIcons from 'react-icons/fa';
-import * as IoIcons from 'react-icons/io5';
-import * as CgIcons from 'react-icons/cg';
-import * as MdIcons from 'react-icons/md';
-import * as BiIcons from 'react-icons/bi';
+import { FaBars } from 'react-icons/fa';
+import { IoCloseCircleOutline } from 'react-icons/io5';
+import { CgLogIn } from 'react-icons/cg';
+import { MdLogout } from 'react-icons/md';
+import { BiHomeHeart } from 'react-icons/bi';
 import { NarbarItems } from './NavbarItems';
 import { IconContext } from 'react-icons';
 
@@ -31,14 +31,14 @@ function Navbar() {
       <IconContext.Provider value={{ color: 'white' }}>
         <div className={menu ? 'navbar' : 'navbar-disabled'}>
           <Link to='#'>
-            <FaIcons.FaBars onClick={showsidebar} />
+            <FaBars onClick={showsidebar} />
           </Link>
         </div>
         <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
           <ul className='nav-menu-items' onClick={showsidebar}>
             <li className='navbar-toggle'>
               <Link to='#' className='menu-bars'>
-                <IoIcons.IoCloseCircleOutline />
+                <IoCloseCircleOutline />
               </Link>
             </li>
             {loggedIn ? (
@@ -55,7 +55,7 @@ function Navbar() {
                 })}
                 <li className='nav-text' onClick={logout}>
                   <a href='#'>
-                    <MdIcons.MdLogout />
+                    <MdLogout />
                     <span>Logout</span>
                   </a>
                 </li>
@@ -64,19 +64,19 @@ function Navbar() {
               <div>
                 <li className='nav-text'>
                   <Link to='/'>
-                    <BiIcons.BiHomeHeart />
+                    <BiHomeHeart />
                     <span>Home</span>
                   </Link>
                 </li>
                 <li className='nav-text'>
                   <Link to='/login/'>
-                    <CgIcons.CgLogIn />
+                    <CgLogIn />
                     <span>Login</span>
                   </Link>
                 </li>
                 <li className='nav-text'>
                   <Link to='/register/'>
-                    <CgIcons.CgLogIn />
+                    <CgLogIn />
                     <span>Register</span>
                   </Link>
                 </li>
