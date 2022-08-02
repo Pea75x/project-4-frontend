@@ -1,5 +1,5 @@
 import axios from 'axios';
-const baseUrl = 'https://project4-priya.herokuapp.com';
+import { baseUrl } from '../config';
 
 export const getFestivals = async () => {
   const options = {
