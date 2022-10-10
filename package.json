@@ -28,8 +28,6 @@
   },
   "dependencies": {
     "@babel/plugin-transform-runtime": "^7.17.0",
-    "@emotion/react": "^11.9.0",
-    "@emotion/styled": "^11.8.1",
     "@fortawesome/fontawesome-svg-core": "^6.1.1",
     "@fortawesome/free-solid-svg-icons": "^6.1.1",
     "@fortawesome/react-fontawesome": "^0.1.18",
@@ -38,12 +36,10 @@
     "axios": "^0.26.1",
     "bulma": "^0.9.3",
     "dateformat": "^5.0.3",
-    "icons": "^1.0.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-icons": "^4.3.1",
     "react-router-dom": "^6.2.2",
-    "reactjs-popup": "^2.0.5",
-    "use-sound": "^4.0.1"
+    "reactjs-popup": "^2.0.5"
   }
 }

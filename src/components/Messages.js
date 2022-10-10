@@ -5,7 +5,7 @@ import { getPublicUser } from '../api/auth';
 import { sendMessage } from '../api/messages';
 import dateFormat from 'dateformat';
 import { Link } from 'react-router-dom';
-import * as TiIcons from 'react-icons/ti';
+import { TiArrowBackOutline } from 'react-icons/ti';
 
 function Messages() {
   const { id } = useParams();
@@ -72,7 +72,7 @@ function Messages() {
         <div className='square'>
           <Link to='/messages/'>
             <div className='back-button'>
-              <TiIcons.TiArrowBackOutline />
+              <TiArrowBackOutline />
             </div>
           </Link>
           <section>
@@ -108,7 +108,7 @@ function Messages() {
         <div className='square'>
           <Link to='/messages/'>
             <div className='back-button'>
-              <TiIcons.TiArrowBackOutline />
+              <TiArrowBackOutline />
             </div>
           </Link>
 
